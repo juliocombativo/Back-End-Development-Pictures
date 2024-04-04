@@ -50,7 +50,7 @@ def get_picture_by_id(id):
     found_image = find_image_by_id(id)
     if data and found_image:
         return jsonify(found_image[0]), 200 
-    return {"message": "not-found"}, 404
+    return {"message": "picture not found"}, 404
 
 
 ######################################################################
@@ -80,7 +80,7 @@ def update_picture(id):
         if found_image:
             data.remove(found_image[0])
             data.append(picture)
-            return jsonify(picture), 200
+            return jsonify(picture), 201
         return {"message": "picture not found"}, 404
     return {"message": "Internal server error"}, 500
 
@@ -93,7 +93,7 @@ def delete_picture(id):
         found_image = find_image_by_id(id)
         if found_image:
             data.remove(found_image[0])
-            return jsonify(found_image), 204
+            return "", 204
         return {"message": "picture not found"}, 404
     return {"message": "Internal server error"}, 500
 
